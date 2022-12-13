@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import useAxios from '../../../hooks/useAxios';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 const schema = yup
     .object({
         // webLink: yup.string().max(12, 'Group name must be at most 12 characters').min(6, 'Group name must be at least 6 characters').required(),
@@ -13,7 +13,7 @@ const schema = yup
     .required();
 
 function CreLinkCenteredModal(props) {
-    const [searchParams, setSearchParams] = useSearchParams();
+    const { id } = useParams();
     const [textLink, setTextLink] = useState('');
     const axios = useAxios();
     const {
@@ -25,14 +25,14 @@ function CreLinkCenteredModal(props) {
     });
 
     useEffect(() => {
-            axios
-                .get('/api/group/link/' + searchParams.get('id'))
-                .then((res) => {
-                    setTextLink(res.data);
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
+        axios
+            .get('/api/group/link/' + id)
+            .then((res) => {
+                setTextLink(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }, []);
 
     const onSubmitData = (data) => {
