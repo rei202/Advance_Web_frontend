@@ -101,7 +101,7 @@ const Presentation = () => {
         <>
             {/* <p className='text-start'>My PresentationDetail</p> */}
             <div className='d-flex flex-row justify-content-between me-5' style={{ marginTop: '16px', marginBottom: '32px' }}>
-                <Button className='me-4' onClick={() => setIsPresentationModalShow(true)}>
+                <Button className='me-4 add-pre-btn' onClick={() => setIsPresentationModalShow(true)}>
                     New Presentation
                 </Button>
             </div>
@@ -109,21 +109,21 @@ const Presentation = () => {
                 <Table hover>
                     <thead>
                         <tr>
-                            <th className='text-start'>
+                            <th className='text-start align-middle'>
                                 <input type='checkbox' className='custom-checkbox' />
                             </th>
                             <th className='text-start'>Name</th>
-                            <th className='text-start'>Owner</th>
-                            <th className='text-start'>Modified</th>
-                            <th className='text-start'>Created</th>
-                            <th className='text-start'></th>
+                            <th className='align-middle'>Owner</th>
+                            <th className='align-middle'>Modified</th>
+                            <th className='align-middle'>Created</th>
+                            <th className='align-middle'></th>
                         </tr>
                     </thead>
                     <tbody>
                         {presentationList.map((presentation, index) => (
-                            <tr className='row-table text-start' key={index} onClick={() => navigate(`./${presentation.id}`)}>
+                            <tr className='row-table text-start' key={index}>
                                 <td></td>
-                                <td>
+                                <td onClick={() => navigate(`./${presentation.id}`)}>
                                     <div className='d-flex flex-row align-items-center'>
                                         <CaretRightSquareFill className='rounded-circle' size='24'></CaretRightSquareFill>
                                         <div className='d-flex flex-column'>
@@ -134,7 +134,9 @@ const Presentation = () => {
                                         </div>
                                     </div>
                                 </td>
-                                <td className='text-secondary align-middle'>{presentation?.user?.username}</td>
+                                <td onClick={() => navigate(`./${presentation.id}`)} className='text-secondary align-middle'>
+                                    {presentation?.user?.username}
+                                </td>
                                 <td className='text-secondary align-middle'>{presentation?.modifiedTime}</td>
                                 <td className='text-secondary align-middle'>{presentation?.createdTime}</td>
                                 <td className='align-items-center'>

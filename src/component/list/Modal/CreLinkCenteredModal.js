@@ -25,7 +25,6 @@ function CreLinkCenteredModal(props) {
     });
 
     const onSubmitData = (data) => {
-        console.log(data);
         axios
             .get('/api/group/send-inviting-mail?groupId=' + id + '&email=' + data.email)
             .then((res) => {
