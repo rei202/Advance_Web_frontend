@@ -24,23 +24,12 @@ function CreLinkCenteredModal(props) {
         resolver: yupResolver(schema),
     });
 
-    useEffect(() => {
-        axios
-            .get('/api/group/link/' + id)
-            .then((res) => {
-                setTextLink(res.data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, []);
-
     const onSubmitData = (data) => {
+        console.log(data);
         axios
-            .post('/api/group/2', data)
+            .get('/api/group/send-inviting-mail?groupId=' + id + '&email=' + data.email)
             .then((res) => {
                 console.log(res);
-                props.handler(res.data);
                 props.onHide();
             })
             .catch((err) => console.log(err));
@@ -54,7 +43,7 @@ function CreLinkCenteredModal(props) {
                 <Modal.Body>
                     <Form.Label>Link</Form.Label>
 
-                    <Card body>{textLink}</Card>
+                    <Card body>localhost:3000/invite/{id}</Card>
                     <Form.Group className='mb-3' controlId='exampleForm.ControlTextarea1'>
                         <Form.Label>Email</Form.Label>
                         <Form.Control as='input' {...register('email')} autoFocus />

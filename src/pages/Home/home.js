@@ -8,7 +8,6 @@ import { Button } from 'react-bootstrap';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import CreGroupCenteredModal from '../../component/list/Modal/CreGroupCenteredModal';
 import EmptyNotification from '../../component/EmptyNotification';
-import i from '../../assets/images/emptybox.png';
 function Home() {
     const [searchParams, setSearchParams] = useSearchParams();
 
